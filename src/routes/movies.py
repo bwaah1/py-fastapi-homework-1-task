@@ -18,8 +18,11 @@ async def get_list_of_movies(
     total_items = (await db.execute(select(func.count()).select_from(MovieModel))).scalar()
     total_pages = (total_items + per_page - 1) // per_page
 
+    if page > total_pages or total_items == 0:
+        raise HTTPException(status_code=404, detail="No movies found.")
+
     if page > total_pages > 0:
-        raise HTTPException(status_code=422, detail=[
+        raise HTTPException(status_code=404, detail=[
             {
                 "loc": ["query", "page"],
                 "msg": "ensure this value is greater than or equal to 1",
