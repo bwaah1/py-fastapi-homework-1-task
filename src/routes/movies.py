@@ -75,7 +75,7 @@ async def get_movie_details(
     movie = result.scalar_one_or_none()
 
     if not movie:
-        raise HTTPException(status_code=404, detail="Movie not found.")
+        raise HTTPException(status_code=404, detail="Movie with the given ID was not found.")
 
     return MovieDetailResponseSchema(
         id=movie.id,
