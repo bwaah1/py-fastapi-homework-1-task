@@ -53,7 +53,7 @@ async def get_list_of_movies(
         for m in movies
     ]
 
-    if not movie_list and page != 1:
+    if not movie_list:
         raise HTTPException(status_code=404, detail="No movies found.")
 
     return MovieListResponseSchema(
