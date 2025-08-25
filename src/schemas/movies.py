@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 import datetime
 
+
 class MovieDetailResponseSchema(BaseModel):
     id: int
     name: str
@@ -15,6 +16,7 @@ class MovieDetailResponseSchema(BaseModel):
     budget: float
     revenue: float
     country: str
+
 
 class MovieListResponseSchema(BaseModel):
     id: int
